@@ -39,7 +39,7 @@ export default async function FanSahifasi({ params }) {
           {fan.nom}
         </h1>
         <p style={{ color: "#6b7280", marginTop: "8px" }}>
-          {fan.darslar} ta dars mavjud
+          {mavzular?.length || 0} ta mavzu mavjud
         </p>
       </div>
 
@@ -58,30 +58,35 @@ export default async function FanSahifasi({ params }) {
         {mavzular && mavzular.length > 0 ? (
           <div>
             {mavzular.map((mavzu, index) => (
-              <div
+              <Link
                 key={mavzu.id}
-                style={{
+                href={`/fanlar/${slug}/${mavzu.slug}`}
+                style={{ textDecoration: "none" }}
+              >
+                <div style={{
                   padding: "16px 24px",
                   borderBottom: index < mavzular.length - 1 ? "1px solid #f3f4f6" : "none",
                   display: "flex",
                   alignItems: "center",
-                  gap: "16px"
-                }}
-              >
-                <div style={{
-                  width: "28px", height: "28px",
-                  borderRadius: "50%",
-                  background: "#f3f4f6",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "13px", fontWeight: "600", color: "#6b7280",
-                  flexShrink: 0
+                  gap: "16px",
+                  background: "white"
                 }}>
-                  {index + 1}
+                  <div style={{
+                    width: "28px", height: "28px",
+                    borderRadius: "50%",
+                    background: "#f3f4f6",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: "13px", fontWeight: "600", color: "#6b7280",
+                    flexShrink: 0
+                  }}>
+                    {index + 1}
+                  </div>
+                  <span style={{ fontSize: "15px", color: "#111827", flex: 1 }}>
+                    {mavzu.nom}
+                  </span>
+                  <span style={{ color: "#9ca3af", fontSize: "18px" }}>→</span>
                 </div>
-                <span style={{ fontSize: "15px", color: "#111827" }}>
-                  {mavzu.nom}
-                </span>
-              </div>
+              </Link>
             ))}
           </div>
         ) : (

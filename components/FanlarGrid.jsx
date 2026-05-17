@@ -52,14 +52,13 @@ export default function FanlarGrid({ fanlar }) {
           gap: "16px"
         }}>
           {filtrlangan.map((fan) => (
-            <FanKartochka
-              key={fan.id}
-              nom={fan.nom}
-              darslar={fan.darslar}
-              rang={fan.rang}
-              slug={fan.slug}
-            />
-          ))}
+  <FanKartochka
+    key={fan.id}
+    nom={fan.nom}
+    mavzularSoni={fan.mavzular?.[0]?.count || 0}
+    slug={fan.slug}
+  />
+))}
         </div>
       )}
     </section>

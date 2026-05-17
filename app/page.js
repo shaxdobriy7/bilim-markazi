@@ -5,7 +5,7 @@ import FanlarGrid from "@/components/FanlarGrid"
 export default async function HomePage() {
   const { data: fanlar } = await supabase
     .from("fanlar")
-    .select("*")
+    .select("*, mavzular(count)")
     .order("nom")
 
   return (
