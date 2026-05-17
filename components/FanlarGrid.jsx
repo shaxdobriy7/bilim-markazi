@@ -23,7 +23,7 @@ export default function FanlarGrid({ fanlar }) {
       <div style={{ marginBottom: "32px" }}>
         <input
           type="text"
-          placeholder="Fan qidiring... (M → Matematika)"
+          placeholder="Fan qidiring..."
           value={qidiruv}
           onChange={(e) => setQidiruv(e.target.value)}
           style={{
