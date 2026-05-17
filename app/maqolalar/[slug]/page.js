@@ -56,18 +56,27 @@ export default async function MaqolaSahifasi({ params }) {
         lineHeight: "1.8",
         color: "#374151"
       }}>
-        {maqola.kontent.split("\n").map((qator, i) => {
-          if (qator.startsWith("## ")) {
-            return <h2 key={i} style={{ fontSize: "22px", fontWeight: "700", color: "#111827", margin: "24px 0 12px" }}>{qator.replace("## ", "")}</h2>
-          }
-          if (qator.startsWith("**") && qator.endsWith("**")) {
-            return <p key={i} style={{ fontWeight: "600", color: "#111827", margin: "8px 0" }}>{qator.replace(/\*\*/g, "")}</p>
-          }
-          if (qator === "") {
-            return <br key={i} />
-          }
-          return <p key={i} style={{ margin: "8px 0" }}>{qator}</p>
-        })}
+{maqola.kontent.split("\n").map((qator, i) => {
+  if (qator.startsWith("## ")) {
+    return <h2 key={i} style={{ fontSize: "22px", fontWeight: "700", color: "#111827", margin: "24px 0 12px" }}>
+      {qator.replace("## ", "")}
+    </h2>
+  }
+  if (qator === "") {
+    return <br key={i} />
+  }
+  // Bold matni render qilish
+  const qismlar = qator.split(/\*\*(.*?)\*\*/g)
+  return (
+    <p key={i} style={{ margin: "8px 0" }}>
+      {qismlar.map((qism, j) =>
+        j % 2 === 1
+          ? <strong key={j} style={{ fontWeight: "600", color: "#111827" }}>{qism}</strong>
+          : qism
+      )}
+    </p>
+  )
+})}
       </div>
 
     </main>
